@@ -1,4 +1,4 @@
-const abi = [
+const abi =  [
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
@@ -27,6 +27,25 @@ const abi = [
 			}
 		],
 		"name": "Approval",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "prazoAntigo",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "prazoNovo",
+				"type": "uint256"
+			}
+		],
+		"name": "NovoPrazoPagamento",
 		"type": "event"
 	},
 	{
@@ -76,6 +95,25 @@ const abi = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint16",
+				"name": "fracoes_",
+				"type": "uint16"
+			}
+		],
+		"name": "alteraFracoes",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -166,12 +204,38 @@ const abi = [
 	},
 	{
 		"inputs": [],
+		"name": "dataEmissao",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "decimals",
 		"outputs": [
 			{
-				"internalType": "uint8",
+				"internalType": "uint256",
 				"name": "",
-				"type": "uint8"
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "fracoes",
+		"outputs": [
+			{
+				"internalType": "uint16",
+				"name": "",
+				"type": "uint16"
 			}
 		],
 		"stateMutability": "view",
@@ -202,8 +266,53 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "novoRating",
+				"type": "string"
+			}
+		],
+		"name": "mudaRating",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "nomeEmissor",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "rating",
 		"outputs": [
 			{
 				"internalType": "string",
