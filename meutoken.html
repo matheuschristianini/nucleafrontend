@@ -98,6 +98,14 @@
                 Data da Emissão: 
                 <span id="dataEmissao"></span>
               </h3>
+              <h3>
+                Rating: 
+                <span id="rating"></span>
+              </h3>
+              <h3>
+                Frações: 
+                <span id="fracoes"></span>
+              </h3>
   
           </section>
       </div>
@@ -157,11 +165,16 @@
         const nomeContrato = document.getElementById("nomeContrato");
         const symbol = document.getElementById("symbol");
         const dataEmissao = document.getElementById("dataEmissao");
+        const rating = document.getElementById("rating");
+        const fracoes = document.getElementById("fracoes");
         //nomeEmissor.innerHTML = await contract.nomeEmissor();
         nomeContrato.innerHTML = await contract.name();
         symbol.innerHTML = await contract.symbol();
         const dataE = await contract.dataEmissao();
         dataEmissao.innerHTML = new Date(Number(dataE) * 1000);
+        const ratingContract = await contract.rating();
+        rating.innerHTML = ratingContract;
+        fracoes.innerHTML = await contract.fracoes();
 
 
         //eventos
