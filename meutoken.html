@@ -76,6 +76,23 @@
         </section>
         <hr />
         <section>
+          <h2>Alterar Frações</h2>
+          <h4>
+            Frações: 
+            <span id="fracoes"></span>
+          </h4>
+          <div>
+            <form action="" name="formFracoes" id="formFracoes" method="get">              
+              <label for="formFracoes">Quantidade:</label>
+              <br /><br />
+              <input type="number" placeholder="10000" required name="formFracoesQtd" id="formFracoesQtd" />
+              <br /><br />
+              <input id="btnFracoes" type="button" value="Alterar Frações" onclick="alterarFracoes()" />
+            </form>
+          </div>
+        </section>
+        <hr />
+        <section>
           <h2>Rede e Infra</h2>
           <h3>Conta selectionada: <span id="networkAccount">&nbsp;</span></h3>
           <h3>Rede selecionada: <span id="networkNetworkID">&nbsp;</span></h3>
@@ -102,10 +119,7 @@
                 Rating: 
                 <span id="rating"></span>
               </h3>
-              <h3>
-                Frações: 
-                <span id="fracoes"></span>
-              </h3>
+              
   
           </section>
       </div>
@@ -122,8 +136,10 @@
     <script src="meutoken-abi.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.6.1/ethers.umd.min.js"></script>
     <script>
+
       async function init() {
         if (window.ethereum == null) {
+          console.log("OPA")
           // If MetaMask is not installed, we use the default provider,
           // which is backed by a variety of third-party services (such
           // as INFURA). They do not have private keys installed so are
@@ -206,6 +222,25 @@
         alert("Aguarde a consulta ser processada pelo Provedor");
         const saldo = await contract.balanceOf(form.formTo.value);
         form.formAmount.value = saldo;
+      }
+
+      async function alterarFracoes() {
+        event.preventDefault();
+        const btn = document.getElementById("btnFracoes");
+        btn.value = "Processando...";
+        alert("Aguarde e confirme a transação no Metamask");
+        const form = document.getElementById("formFracoes");
+        const tx = await contract.alteraFracoes(form.formFracoesQtd.value);
+        console.log("tx enviada: ", tx);
+        alert("Transação enviada a Blockchain. Aguarde.\nID: " + tx.hash);
+        const txReceipt = await tx.wait();
+        console.log("txReceipt: ", txReceipt);
+        if (txReceipt.status === 1) {
+          await atualizaTotalSupply();
+          alert("Parabéns! Frações alteradas.");
+          btn.value = "Alterar Frações";
+          form.reset();
+        }
       }
 
       async function mintar() {
