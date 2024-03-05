@@ -82,10 +82,10 @@
         </section>
         <section>
 
-            <h3>
+            <!--h3>
               Emissor: 
               <span id="nomeEmissor"></span>
-            </h3>
+            </h3-->
             <h3>
                 Nome do Contrato: 
                 <span id="nomeContrato"></span>
@@ -157,8 +157,9 @@
         const nomeContrato = document.getElementById("nomeContrato");
         const symbol = document.getElementById("symbol");
         const dataEmissao = document.getElementById("dataEmissao");
-        nomeEmissor.innerHTML = await contract.nomeEmissor();
+        //nomeEmissor.innerHTML = await contract.nomeEmissor();
         nomeContrato.innerHTML = await contract.name();
+        symbol.innerHTML = await contract.symbol();
         const dataE = await contract.dataEmissao();
         dataEmissao.innerHTML = new Date(Number(dataE) * 1000);
 
